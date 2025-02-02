@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import CustomerPage from './pages/customer/CustomerPage'
 import LoginPage from './pages/auth/LoginPage';
 import SignUpPage from './pages/auth/SignUpPage';
-import AdminDashboard from './pages/AdminDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 const API_URL = process.env.NODE_ENV === 'production' 
 ? window.API_URL 
