@@ -1,6 +1,34 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const SideBar = () => {
+    const API_URL = process.env.REACT_APP_API_URL;
+
+    const navigate = useNavigate();
+    const handleLogout =  async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(`${API_URL}/users/logout`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data.message); 
+                localStorage.removeItem('token');
+                localStorage.removeItem('user');
+                navigate('/login');
+            } else {
+                console.error('Logout failed:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
+
     return (
         <>
             <nav className="menu bg-[var(--primary)] hidden md:inline-block lg:inline-block xl:inline-block h-full fixed z-10 w-52">
@@ -64,7 +92,13 @@ const SideBar = () => {
                                         </a>
                                     </li>
                                     <li><a>Settings</a></li>
-                                    <li><a>Logout</a></li>
+                                    <li>
+                                        <button
+                                            onClick={handleLogout}
+                                        >
+                                            Logout
+                                        </button>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
