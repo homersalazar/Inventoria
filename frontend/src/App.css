@@ -9,4 +9,9 @@
 :root{
     --primary: #802ce4;
     --secondary: #5004a4;
+    --tertiary: #e8d4fc;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
 }

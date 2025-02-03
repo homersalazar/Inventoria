@@ -5,6 +5,8 @@ const SideBar = () => {
     const API_URL = process.env.REACT_APP_API_URL;
 
     const navigate = useNavigate();
+
+    // User Logout function
     const handleLogout =  async (e) => {
         e.preventDefault();
         try {
@@ -39,12 +41,12 @@ const SideBar = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="/admin-dashboard" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
+                        <a href="/products" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
                             <i className="fa-solid fa-boxes-stacked"></i> Products
                         </a>
                     </li>
                     <li>
-                        <a href="/admin-dashboard" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
+                        <a href="/categories" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
                             <i className="fa-solid fa-clipboard-list"></i> Categories
                         </a>
                     </li>
@@ -115,7 +117,7 @@ const SideBar = () => {
                             </a>
                         </li>
                         <li className="flex justify-center items-center">
-                            <a href="/admin-dashboard" className="hover:bg-[var(--secondary)] rounded-xl text-white">
+                            <a href="/products" className="hover:bg-[var(--secondary)] rounded-xl text-white">
                                 Products
                             </a>
                         </li>
