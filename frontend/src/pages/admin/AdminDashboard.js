@@ -1,7 +1,6 @@
 import React from 'react'
 import SideBar from '../../components/admin/SideBar'
 import StatsComponent from '../../components/admin/StatsComponent'
-import { AddProductBtn } from '../../components/admin/AddProductBtn'
 
 const AdminDashboard = () => {
     return (
@@ -16,7 +15,6 @@ const AdminDashboard = () => {
                     <StatsComponent/>
                     <StatsComponent/>
                     <StatsComponent/>
-                    <AddProductBtn/>
                 </div>
                 <div className='flex flex-col md:flex-row w-full gap-5'>
                     <div class="card bg-primary text-primary-content w-full md:w-96">

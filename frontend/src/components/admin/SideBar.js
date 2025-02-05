@@ -51,7 +51,7 @@ const SideBar = () => {
                         </a>
                     </li>
                     <li>
-                        <a href="/admin-dashboard" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
+                        <a href="/finances" className="text-lg hover:bg-[var(--secondary)] rounded-xl hover:text-white text-white font-bold">
                             <i className="fa-solid fa-money-bills"></i> Finances
                         </a>
                     </li>
@@ -127,7 +127,7 @@ const SideBar = () => {
                             </a>
                         </li>
                         <li className="flex justify-center items-center">
-                            <a href="/admin-dashboard" className="hover:bg-[var(--secondary)] rounded-xl text-white">
+                            <a href="/finances" className="hover:bg-[var(--secondary)] rounded-xl text-white">
                                 Finances
                             </a>
                         </li>

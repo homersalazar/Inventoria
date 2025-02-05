@@ -14,10 +14,10 @@ const ProductPage = () => {
                             <input type="text" className="grow" placeholder="Search" />
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </label>
-                        <select class="select select-bordered bg-[var(--tertiary)] w-full max-w-xs">
-                            <option className='bg-white' disabled selected>Filter By</option>
-                            <option className='bg-white'>Han Solo</option>
-                            <option className='bg-white'>Greedo</option>
+                        <select class="select select-bordered w-full max-w-xs">
+                            <option disabled selected>Filter By</option>
+                            <option>Han Solo</option>
+                            <option>Greedo</option>
                         </select>
                         <AddProductBtn />
                     </div>

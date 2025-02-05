@@ -6,6 +6,8 @@ import SignUpPage from './pages/auth/SignUpPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import ProductPage from './pages/admin/ProductPage';
 import CategoryPage from './pages/admin/CategoryPage';
+import FinancePage from './pages/admin/FinancePage';
+import CreateProductPage from './pages/admin/CreateProductPage';
 
 const API_URL = process.env.NODE_ENV === 'production' 
 ? window.API_URL 
@@ -22,7 +24,8 @@ function App() {
 
       <Route path='/products' element={<ProductPage />} />
       <Route path='/categories' element={<CategoryPage />} />
-
+      <Route path='/finances' element={<FinancePage />} />
+      <Route path='/add-product' element={<CreateProductPage />} />
     </Routes>
   );
 }
