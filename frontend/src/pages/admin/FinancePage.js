@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Bar } from "react-chartjs-2";
 import {
     Chart as ChartJS,
@@ -46,15 +46,15 @@ const FinancePage = () => {
         ],
     };
 
-    const [date, setDate] = useState(new Date());
+    const date = new Date();
 
     return (
         <>
             <SideBar />
             <div className='flex flex-col gap-10 px-5 md:ml-56'>
-                <h1 className='text-2xl md:text-3xl font-semibold'>Finance Page</h1>
+                <h1 className='text-2xl md:text-3xl font-semibold'>Finances</h1>
                 <div className="flex flex-row gap-5 w-full">
-                    <select class="select select-bordered w-full max-w-xs">
+                    <select className="select select-bordered w-full max-w-xs">
                         <option disabled selected>View range</option>
                         <option>Han Solo</option>
                         <option>Greedo</option>
