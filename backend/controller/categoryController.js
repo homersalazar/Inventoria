@@ -51,7 +51,10 @@ exports.categoryStore = async (req, res) => {
 
 exports.categoryFetch = async (req, res) => {
     const sql = `
-        SELECT id, image_path, ctgy_name FROM categories;    
+        SELECT categories.id, categories.image_path, categories.ctgy_name, COUNT(products.id) AS product_count 
+        FROM categories
+        LEFT JOIN products ON categories.id = products.ctgy_id
+        GROUP BY categories.id, categories.ctgy_name
     `;
 
     db.query(sql, (err, results) => {

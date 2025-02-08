@@ -45,11 +45,6 @@ const ProductPage = () => {
                         {/* head */}
                         <thead>
                             <tr>
-                                <th>
-                                    <label>
-                                        <input type="checkbox" className="checkbox" />
-                                    </label>
-                                </th>
                                 <th></th>
                                 <th>Name of product</th>
                                 <th>Status</th>
@@ -63,11 +58,6 @@ const ProductPage = () => {
                                     key={row.id}
                                     onDoubleClick={() => handleView(row.item_code)} 
                                 >
-                                    <th>
-                                        <label>
-                                            <input type="checkbox" className="checkbox" />
-                                        </label>
-                                    </th>
                                     <td>
                                         <div className="flex items-center gap-3">
                                             <div className="avatar">

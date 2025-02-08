@@ -26,6 +26,7 @@ const CategoryPage = () => {
                             id={datas.id} 
                             image_path={datas.image_path} 
                             ctgy_name={datas.ctgy_name} 
+                            product_count={datas.product_count} 
                         />
                     ))}
                 </div>
