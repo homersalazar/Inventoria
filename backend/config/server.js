@@ -5,6 +5,8 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require('body-parser');
 const userController = require('../controller/userController');
 const categoryController = require('../controller/categoryController');
+const productController = require('../controller/productController');
+
 
 const PORT = 3002;
 const app = express();
@@ -23,6 +25,12 @@ app.get('/api/users/validate-email', userController.validateEmail);
 
 app.get('/api/category/fetch', categoryController.categoryFetch);
 app.post('/api/category/store', categoryController.categoryStore);
+
+app.get('/api/product/fetch', productController.productFetch);
+app.post('/api/product/store', productController.productStore);
+app.get('/api/product/view/:item_code', productController.productView);
+app.get('/api/product-related/view/:ctgy_id/:item_code', productController.productRelatedView);
+
 
 app.listen(PORT, () => {
     console.log(`Server listening on ${PORT}`);

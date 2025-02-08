@@ -35,7 +35,6 @@ const CreateCategoryModal = ({ refetch }) => {
             }else{
                 refetch();  // Fetch updated categories
                 document.getElementById("add_category_modal").checked = false
- 
             }
 
             const data = await response.json();
