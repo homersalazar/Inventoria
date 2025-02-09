@@ -135,3 +135,38 @@ exports.productRelatedView = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
+
+exports.productEdit = async (req, res) => {
+    const { item_code } = req.params; 
+    
+    const sql = `SELECT 
+                        products.*, 
+                        categories.ctgy_name,
+                        (SUM(CASE WHEN quantities.trans_status = 0 THEN quantities.quantity ELSE 0 END) -
+                        SUM(CASE WHEN quantities.trans_status = 1 THEN quantities.quantity ELSE 0 END)) AS quantity
+                    FROM products
+                    LEFT JOIN categories ON products.ctgy_id = categories.id
+                    LEFT JOIN quantities ON products.id = quantities.prod_id
+                    WHERE products.item_code = ?
+                    GROUP BY products.id`;
+
+    try {
+        const results = await new Promise((resolve, reject) => {
+            db.query(sql, [item_code], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results);
+            });
+        });
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'No product found.' });
+        }
+
+        res.json(results);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};

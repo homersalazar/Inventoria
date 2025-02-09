@@ -13,7 +13,7 @@ export const CategoryCard = ({ id, image_path, ctgy_name, product_count }) => {
             
             <div class="card-body">
                 <h2 className="card-title capitalize">{ctgy_name}</h2>
-                <p>{product_count} items</p>            
+                <p>{product_count <= 1 ? `${product_count} item` : `${product_count} items`}</p>            
             </div>
         </div>
     )

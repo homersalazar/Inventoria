@@ -9,6 +9,7 @@ import CategoryPage from './pages/admin/CategoryPage';
 import FinancePage from './pages/admin/FinancePage';
 import CreateProductPage from './pages/admin/CreateProductPage';
 import ViewProductPage from './pages/admin/ViewProductPage';
+import EditProductPage from './pages/admin/EditProductPage';
 
 const API_URL = process.env.NODE_ENV === 'production' 
 ? window.API_URL 
@@ -26,6 +27,7 @@ function App() {
       <Route path='/products' element={<ProductPage />} />
       <Route path='/add-product' element={<CreateProductPage />} />
       <Route path='/product/view/:item_code' element={<ViewProductPage />} />
+      <Route path='/product/edit/:item_code' element={<EditProductPage />} />
 
       <Route path='/categories' element={<CategoryPage />} />
       <Route path='/finances' element={<FinancePage />} />
