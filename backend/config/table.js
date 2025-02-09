@@ -53,11 +53,11 @@ CREATE TABLE products (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE TABLE transactions ( 
+CREATE TABLE quantities ( 
     tranno INT PRIMARY KEY AUTO_INCREMENT, 
     prod_id smallInt(10) NULL, 
     quantity INT(10) NULL, 
-    tran_status smallInt(10) NULL, 
+    trans_status smallInt(10) NULL, 
     added_by VARCHAR(20) NULL, 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, 
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 
