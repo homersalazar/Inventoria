@@ -170,3 +170,84 @@ exports.productEdit = async (req, res) => {
         res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
+
+exports.productShow = async (req, res) => {
+    const { id } = req.params; 
+    
+    const sql = `SELECT *
+                FROM products
+                WHERE products.id = ?`;
+
+    try {
+        const results = await new Promise((resolve, reject) => {
+            db.query(sql, [id], (err, results) => {
+                if (err) {
+                    return reject(err);
+                }
+                resolve(results);
+            });
+        });
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'No product found.' });
+        }
+
+        res.json(results[0]);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
+    }
+};
+
+exports.productUpdate = async (req, res) => {
+    try {
+        const id = req.params.id; // Get ID from URL
+        const { prod_name, item_code, description, size, price } = req.body;
+        let newFilename = null;
+
+        // Check if product exists
+        const getProductSql = 'SELECT product_path FROM products WHERE id = ?';
+        db.query(getProductSql, [id], async (err, results) => {
+            if (err) {
+                return res.status(500).json({ error: 'Database error' });
+            }
+
+            if (results.length === 0) {
+                return res.status(404).json({ error: 'Product not found' });
+            }
+
+            const oldFilename = results[0].product_path;
+            const uploadDir = path.join(__dirname, '../../frontend/public/uploads/product');
+
+            // Handle file upload
+            if (req.files && req.files.product_path) {
+                const image = req.files.product_path;
+                const ext = path.extname(image.name);
+                newFilename = `${prod_name.replace(/\s+/g, '_')}_${Date.now()}${ext}`;
+                const imagePath = path.join(uploadDir, newFilename);
+                await image.mv(imagePath);
+
+                // Delete old image if exists
+                if (oldFilename) {
+                    const oldImagePath = path.join(uploadDir, oldFilename);
+                    if (fs.existsSync(oldImagePath)) {
+                        fs.unlinkSync(oldImagePath);
+                    }
+                }
+            } else {
+                newFilename = oldFilename;
+            }
+
+            // Update product
+            const updateSql = 'UPDATE products SET prod_name = ?, item_code = ?, description = ?, size = ?, price = ?, product_path = ? WHERE id = ?';
+            db.query(updateSql, [prod_name, item_code, description, size, price, newFilename, id], (updateErr) => {
+                if (updateErr) {
+                    return res.status(500).json({ error: 'Database error' });
+                }
+                res.json({ message: 'Product updated successfully', product_path: newFilename });
+            });
+        });
+    } catch (error) {
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};

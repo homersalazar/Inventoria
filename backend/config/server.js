@@ -31,6 +31,8 @@ app.post('/api/product/store', productController.productStore);
 app.get('/api/product/view/:item_code', productController.productView);
 app.get('/api/product-related/view/:ctgy_id/:item_code', productController.productRelatedView);
 app.get('/api/product/edit/:item_code', productController.productEdit);
+app.get('/api/product/show/:id', productController.productShow);
+app.put('/api/product/update/:id', productController.productUpdate);
 
 app.post('/api/quantity/store', quantityController.quantityStore);
 
