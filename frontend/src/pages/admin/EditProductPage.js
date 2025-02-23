@@ -6,21 +6,27 @@ import CreateQuantityModal from '../../components/admin/CreateQuantityModal';
 
 import { useParams } from 'react-router-dom'
 import { ucwords } from '../../utils/Ucwords';
+import EditProductModal from '../../components/admin/EditProductModal';
 
 const EditProductPage = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [prodId, setProdId] = useState(null);
+    const [productId, setProductId] = useState(null);
 
     const API_URL = process.env.REACT_APP_API_URL;
 
     const { item_code } = useParams()
     const { data, refetch } = useFetch(`${API_URL}/product/edit/${item_code}`);
 
-    const handleEdit = (id) => {
+    const handleAddQuantity = (id) => {
         setProdId(id);          
     }
 
-    const filterProducts = data.filter(row => {
+    const handleEditProduct = (id) => {
+        setProductId(id);          
+    }
+
+    const filterProducts = (data || []).filter(row => {
         return (
             `${ucwords(row.prod_name)}`.toLowerCase().includes(searchTerm.toLowerCase()) ||
             row.ctgy_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -107,16 +113,17 @@ const EditProductPage = () => {
                     <label
                         className="text-green-500 hover:text-green-700"
                         htmlFor="add_quantity_modal" 
-                        onClick={() => handleEdit(row.id)}
+                        onClick={() => handleAddQuantity(row.id)}
                     >
                         <i className="fa-solid fa-plus-circle"></i>
                     </label>
-                    <button
+                    <label
                         className="text-blue-500 hover:text-blue-700"
-                        // onClick={() => handleEdit(row)}
+                        htmlFor="edit_product_modal" 
+                        onClick={() => handleEditProduct(row.id)}
                     >
                         <i className="fa-solid fa-edit"></i>
-                    </button>
+                    </label>
                     <button
                         className="text-red-500 hover:text-red-700"
                         // onClick={() => handleDelete(row.id)}
@@ -151,6 +158,12 @@ const EditProductPage = () => {
                 refetch={refetch} 
                 prodId={prodId}
             />
+
+            <EditProductModal 
+                refetch={refetch} 
+                productId={productId}
+            />
+
             <div className='flex flex-col px-5 md:ml-56'>
                 <h1 className='text-2xl md:text-3xl font-semibold hidden md:block'>Edit Products</h1>
                 <div className='flex justify-end w-full py-2 gap-5'>

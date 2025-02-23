@@ -10,7 +10,7 @@ const ViewProductPage = () => {
 
     const { item_code } = useParams()
     const { data } = useFetch(`${API_URL}/product/view/${item_code}`);
-    const { data: relatedProductData } = useFetch(`${API_URL}/product-related/view/${data.ctgy_id}/${item_code}`);
+    const { data: relatedProductData } = useFetch(data?.ctgy_id ? `${API_URL}/product-related/view/${data.ctgy_id}/${item_code}` : null);
     
     const handleCategory = () => {
         navigate('/categories');

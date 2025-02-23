@@ -111,6 +111,7 @@ function useForm(initialValues, validate) {
         handleBlur,
         handleSubmit,
         resetForm,
+        setValues
     };
 }
 
